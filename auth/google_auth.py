@@ -4,8 +4,7 @@ import pickle
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 
-SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"]
-
+SCOPES = ["https://www.googleapis.com/auth/gmail.send"]
 
 def get_google_credentials():
     creds = None

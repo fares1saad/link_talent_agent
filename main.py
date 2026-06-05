@@ -1,8 +1,8 @@
 from langchain.messages import HumanMessage
 from dotenv import load_dotenv
 from langchain.tools import tool
-from sh_agent.mail_agent import MailAgent
-
+from mail_agent.mail_agent import MailAgent
+from config.settings import get_settings
 
 import os
 import pickle
@@ -10,15 +10,29 @@ import pickle
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
-from tools.profile import get_gmail_credentials
+from tools.profile import get_mail_credentials
+from tools.actions.send_mail import send_mail
+from tools.templates.templateParser import TemplateParser
+
 load_dotenv()
+settings = get_settings()
+
 
 agent = MailAgent()
 
 
-agent.add_tool(get_gmail_credentials)
+agent.add_tool(send_mail)
 
-response = agent.invoke(
-    {"messages": [HumanMessage(content="What is my Gmail profile?")]}
-)
+response = agent.invoke({
+    "messages": [
+        HumanMessage(
+            content="""
+reject canidate called Marawan Moahmed applying for Game Designer company aiesic Turkey with mail marwan.m.nabil.03@gmail.com 
+reject also a canidate called menna amr applying for AI Customer Support role at AGNC with email mennaalsharkawyy@gmail.com
+"""
+        )
+    ]
+})
 print(response['messages'][-1].content)
+
+

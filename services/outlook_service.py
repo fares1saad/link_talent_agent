@@ -5,7 +5,7 @@ from typing import Any, Dict, List, Optional
 
 import requests
 from auth.outlook_auth import OutlookAuth
-from models.email import Email
+from schemes.email import Email
 
 GRAPH_BASE_URL = "https://graph.microsoft.com/v1.0"
 

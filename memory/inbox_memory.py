@@ -1,6 +1,6 @@
 """Simple in-memory inbox memory."""
 from typing import List
-from models.email import Email
+from schemes.email import Email
 
 
 class InboxMemory:

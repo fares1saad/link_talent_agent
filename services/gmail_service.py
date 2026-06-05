@@ -1,6 +1,6 @@
 """Gmail service skeleton."""
 from typing import List, Optional
-from models.email import Email
+from schemes.email import Email
 
 
 class GmailService:

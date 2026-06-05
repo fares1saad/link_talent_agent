@@ -1,26 +1,32 @@
 from langchain.tools import tool
 from googleapiclient.discovery import build
+from enums.providerEnums import ProviderEnum
+from config.settings import get_settings
 
 from auth.google_auth import get_google_credentials
 
-@tool
-def get_gmail_credentials() -> dict:
-    """
-    Get Gmail account profile information (email, total messages, threads).
-    """
+@tool(description="Get mail account profile information (email, total messages, threads)")
+def get_mail_credentials() -> dict:
 
-    creds = get_google_credentials()
+    settings = get_settings()
 
-    service = build(
-        "gmail",
-        "v1",
-        credentials=creds,
-    )
+    if settings.provider == ProviderEnum.GOOGLE.value:
 
-    profile = (
-        service.users()
-        .getProfile(userId="me")
-        .execute()
-    )
+        creds = get_google_credentials()
+
+        service = build(
+            "gmail",
+            "v1",
+            credentials=creds,
+        )
+
+        profile = (
+            service.users()
+            .getProfile(userId="me")
+            .execute()
+        )
+
+    if settings.provider == ProviderEnum.MICROSOFT.value:
+        pass
 
     return profile

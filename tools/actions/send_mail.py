@@ -68,50 +68,42 @@ def send_mail(data: SendMailInput) -> bool:
         body = data.body 
 
 
-    subject = f"{data.company_name} - Application Update"
+    subject = f"{data.company_name}- {data.role} - Application Update"
 
     # 2. GOOGLE PROVIDER
-    if settings.provider == ProviderEnum.GOOGLE.value:
+    # if settings.provider == ProviderEnum.GOOGLE.value:
 
-        creds = get_google_credentials()
+    #     creds = get_google_credentials()
 
-        service = build(
-            "gmail",
-            "v1",
-            credentials=creds,
-        )
+    #     service = build(
+    #         "gmail",
+    #         "v1",
+    #         credentials=creds,
+    #     )
 
-        # 3. Build MIME message
-        msg = MIMEText(body)
-        msg["to"] = data.email
-        msg["subject"] = subject
+    #     # 3. Build MIME message
+    #     msg = MIMEText(body)
+    #     msg["to"] = data.email
+    #     msg["subject"] = subject
 
-        raw_message = base64.urlsafe_b64encode(
-            msg.as_bytes()
-        ).decode("utf-8")
+    #     raw_message = base64.urlsafe_b64encode(
+    #         msg.as_bytes()
+    #     ).decode("utf-8")
 
-        body = {"raw": raw_message}
+    #     body = {"raw": raw_message}
 
-        # 4. SEND EMAIL
-        service.users().messages().send(
-            userId="me",
-            body=body
-        ).execute()
+    #     # 4. SEND EMAIL
+    #     service.users().messages().send(
+    #         userId="me",
+    #         body=body
+    #     ).execute()
 
-        return True
+    #     return True
 
-    # 5. MICROSOFT (future implementation)
-    if settings.provider == ProviderEnum.MICROSOFT.value:
-        pass
+    # # 5. MICROSOFT (future implementation)
+    # if settings.provider == ProviderEnum.MICROSOFT.value:
+    #     pass
 
     return False
 
 
-
-    # print("\n" + "="*50)
-    # print("REJECTION EMAIL")
-    # print("="*50)
-    # print(rejection_email)
-
-    # # TODO: connect to email provider and send the message
-    return False

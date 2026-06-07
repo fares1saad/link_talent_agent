@@ -27,8 +27,7 @@ response = agent.invoke({
     "messages": [
         HumanMessage(
             content="""
-reject canidate called Marawan Moahmed applying for Game Designer company aiesic Turkey with mail marwan.m.nabil.03@gmail.com 
-reject also a canidate called menna amr applying for AI Customer Support role at AGNC with email mennaalsharkawyy@gmail.com
+reject canidate called Marawan Moahmed applying for junior ball controller company mas w l3b with mail marwan.m.nabil.03@gmail.com 
 """
         )
     ]

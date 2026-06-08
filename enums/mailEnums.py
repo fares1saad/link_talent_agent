@@ -6,3 +6,4 @@ class MailEnums(Enum):
     ACCEPTANCE = "acceptance"
     INTERVIEW_INVITE = "interview_invite"
     SCHEDULE_INTERVIEW = "schedule_interview"
+    CUSTOM = "custom"

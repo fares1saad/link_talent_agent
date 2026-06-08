@@ -14,6 +14,10 @@ class SendMailInput(BaseModel):
         description="Type of recruitment email."
     )
 
+    subject: str = Field(
+        description="Email subject line."
+    )
+
     email: str = Field(
         description="Recipient email address."
     )

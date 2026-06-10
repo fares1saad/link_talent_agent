@@ -12,7 +12,10 @@ class MailAgent:
         self.agent = create_agent(
             tools=[],
              model="gpt-5-nano",
-            system_prompt="You are a helpful email assistant. Use tools when needed."
+            system_prompt="You are a helpful email assistant. Use tools when needed.",
+            #max_tokens=10000,
+
+
         )
 
     def invoke(self, input):
@@ -23,7 +26,9 @@ class MailAgent:
         self.agent = create_agent(
             tools=self.tools,
              model="gpt-5-nano",
-            system_prompt="You are a helpful email assistant. Use tools when needed."
+            system_prompt="You are a helpful email assistant. Use tools when needed.",
+            #max_tokens=10000,
+
         )
 
 

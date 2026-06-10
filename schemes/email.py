@@ -1,5 +1,6 @@
 from typing import Literal
 from pydantic import BaseModel, Field
+from typing import Optional
 
 
 class SendMailInput(BaseModel):
@@ -64,4 +65,47 @@ class SendMailInput(BaseModel):
     body: str | None = Field(
         default=None,
         description="Required only when email_type='custom'."
+    )
+
+
+class SearchEmailsInput(BaseModel):
+    sender: Optional[str] = Field(
+        default=None,
+        description="Filter emails by sender email."
+    )
+    recipient: Optional[str] = Field(
+        default=None,
+        description="Filter emails by recipient email or name."
+    )
+    subject: Optional[str] = Field(
+        default=None,
+        description="Filter emails by subject."
+    )
+    keywords: Optional[str] = Field(
+        default=None,
+        description="Words or phrases or name that should appear in the email."
+    )
+    start_date: Optional[str] = Field(
+        default=None,
+        description="Only emails after this date. Format: YYYY/MM/DD"
+    )
+    end_date: Optional[str] = Field(
+        default=None,
+        description="Only emails before this date. Format: YYYY/MM/DD"
+    )
+    unread_only: bool = Field(
+        default=False,
+        description="Only unread emails."
+    )
+    has_attachment: bool = Field(
+        default=False,
+        description="Only emails with attachments."
+    )
+    label: Optional[str] = Field(
+        default="INBOX",
+        description="Gmail label such as INBOX, SENT, DRAFT, SPAM, TRASH. Defaults to INBOX."
+    )
+    max_results: int = Field(
+        default=20,
+        description="Maximum number of emails to return."
     )

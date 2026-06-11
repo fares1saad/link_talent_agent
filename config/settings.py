@@ -13,6 +13,8 @@ class Settings(BaseSettings):
     langsmith_endpoint: str | None = None
     langsmith_project: str | None = None
     language: str = "en"
+    timezone: str = "Africa/Cairo"  # add this
+
 
 
 

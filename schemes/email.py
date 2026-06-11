@@ -3,13 +3,19 @@ from pydantic import BaseModel, Field
 from typing import Optional
 
 
+from typing import Literal
+from pydantic import BaseModel, Field
+from typing import Optional
+
+
 class SendMailInput(BaseModel):
     email_type: Literal[
         "rejection",
-        "acceptance",
-        "interview_invite",
         "missing_documents",
-        "schedule_interview",
+        "intent_to_offer",
+        "offer_follow_up",
+        "formal_offer_onboarding",
+        "post_interview_feedback",
         "custom",
     ] = Field(
         description="Type of recruitment email."
@@ -38,34 +44,71 @@ class SendMailInput(BaseModel):
         description="Company name."
     )
 
-    interview_date: str | None = Field(
-        default=None,
-        description=(
-            "Required only for interview_invite. "
-            "Example: 'June 20, 2026 at 3:00 PM UTC'."
-        )
-    )
-
-    interview_link: str | None = Field(
-        default=None,
-        description=(
-            "Required only for interview_invite. "
-            "Meeting URL (Google Meet, Zoom, Teams, etc)."
-        )
-    )
-
-    calendar_link: str | None = Field(
-        default=None,
-        description=(
-            "Required only for schedule_interview. "
-            "Link where the candidate can choose a time slot."
-        )
-    )
-
     body: str | None = Field(
         default=None,
         description="Required only when email_type='custom'."
     )
+
+    recruiter_name: str | None = Field(
+        default=None,
+        description="Name of recruiter sending the email."
+    )
+
+    job_title: str | None = Field(
+        default=None,
+        description="Job title (used across offer, rejection, feedback emails)."
+    )
+
+    expected_start_date: str | None = Field(
+        default=None,
+        description="Candidate expected start date (intent_to_offer)."
+    )
+
+    current_address: str | None = Field(
+        default=None,
+        description="Candidate residential address (intent_to_offer)."
+    )
+
+    planned_holidays: str | None = Field(
+        default=None,
+        description="Planned holidays in next 3-6 months (intent_to_offer)."
+    )
+
+    salary: str | None = Field(
+        default=None,
+        description="Base salary amount (formal_offer_onboarding)."
+    )
+
+    currency: str | None = Field(
+        default=None,
+        description="Salary currency (e.g. USD, EUR, EGP)."
+    )
+
+    start_date: str | None = Field(
+        default=None,
+        description="Official start date (formal_offer_onboarding)."
+    )
+
+    work_location: str | None = Field(
+        default=None,
+        description="Work location (formal_offer_onboarding)."
+    )
+
+    manager_name: str | None = Field(
+        default=None,
+        description="Reporting manager name (formal_offer_onboarding)."
+    )
+
+    deadline_date: str | None = Field(
+        default=None,
+        description="Deadline to sign and return offer (formal_offer_onboarding)."
+    )
+
+    missing_items: str | None = Field(
+        default=None,
+        description="List of missing documents (missing_documents)."
+    )
+
 
 
 class SearchEmailsInput(BaseModel):
@@ -87,7 +130,7 @@ class SearchEmailsInput(BaseModel):
     )
     start_date: Optional[str] = Field(
         default=None,
-        description="Only emails after this date. Format: YYYY/MM/DD"
+        description="Only emails after this date. Format: YYYY/MM/DD or since 2024/01/01 or 7d ago"
     )
     end_date: Optional[str] = Field(
         default=None,

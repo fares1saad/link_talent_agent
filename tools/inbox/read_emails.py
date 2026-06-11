@@ -5,6 +5,8 @@ from providers.providerFactory import ProviderFactory
 
 @tool(
     description="""Read the content of one or more emails by ID.
+    always return the ids.
+
 
 Use this when the user wants to read email content. Input is a list of email IDs (pass a single ID as a one-element list).
 

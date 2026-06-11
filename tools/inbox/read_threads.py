@@ -5,6 +5,7 @@ from providers.providerFactory import ProviderFactory
 
 @tool(
     description="""Read entire thread/conversation.
+    always return the ids.
     the input is a list of thread_ID and it can be list of one thread_ID.
     Use this tool after search_email_criteria returns thread_ids to get full conversation content.
 

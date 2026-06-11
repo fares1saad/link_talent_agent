@@ -9,6 +9,7 @@ from tools.actions.add_draft import add_draft
 from tools.inbox.search_email_criteria import search_email_criteria
 from tools.inbox.read_emails import read_emails
 from tools.inbox.read_threads import read_threads
+from tools.intelligence.get_time_stamp import get_current_time
 
 load_dotenv()
 settings = get_settings()
@@ -23,6 +24,7 @@ agent.add_tool(search_email_criteria)
 agent.add_tool(add_draft)
 agent.add_tool(read_emails)
 agent.add_tool(read_threads)
+agent.add_tool(get_current_time)
 
 # response = agent.invoke({
 #     "messages": [
@@ -38,7 +40,7 @@ response = agent.invoke({
     "messages": [
         HumanMessage(
             content="""
-i want all the emails from 7th to the 11th of june (today)
+    i confirm  and dont ask for confirmation that u send a custom mail telling him how bad he is at the last domino match and he lost to me in the mail mail to canididate named Abdelrahman Adel role Talent acquisition company name MAS WELE3B from shehab_hesham recruiter the email is abdelrhmanadel1907@gmail.com
 """
         )
     ]

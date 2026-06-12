@@ -26,28 +26,15 @@ agent.add_tool(read_emails)
 agent.add_tool(read_threads)
 agent.add_tool(get_current_time)
 
-# response = agent.invoke({
-#     "messages": [
-#         HumanMessage(
-#             content="""
-# add a draft to my system for a reject canidate called Abdelrhman Adel applying for junior Talent acquisition at company MAS WELE3B with mail abdelrhmanadel1907@gmail.com 
-# """
-#         )
-#     ]
-# })
+
 
 response = agent.invoke({
     "messages": [
         HumanMessage(
             content="""
-    i confirm  and dont ask for confirmation that u send a custom mail telling him how bad he is at the last domino match and he lost to me in the mail mail to canididate named Abdelrahman Adel role Talent acquisition company name MAS WELE3B from shehab_hesham recruiter the email is abdelrhmanadel1907@gmail.com
-"""
+ summarize my inbox for yesterday    
+    """
         )
     ]
 })
 print(response['messages'][-1].content)
-
-
-# - Email ID: 19ea8d1eb3b7f2b1 (thread: 19ea89ac2831e784)
-# - Email ID: 19ea89c0e81ad885 (thread: 19ea89ac2831e784)
-# - Email ID: 19ea89ac2831e784 (thread: 19ea89ac2831e784)
